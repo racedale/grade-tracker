@@ -1,0 +1,24 @@
+{
+  "name": "grade-tracker",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/racedale/grade-tracker.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/racedale/grade-tracker/issues"
+  },
+  "homepage": "https://github.com/racedale/grade-tracker#readme",
+  "devDependencies": {
+    "@testing-library/cypress": "^6.0.1",
+    "cypress": "^5.0.0"
+  }
+}
