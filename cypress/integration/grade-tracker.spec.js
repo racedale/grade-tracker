@@ -1,5 +1,27 @@
 /// <reference types="cypress" />
 
+Cypress.Screenshot.defaults({
+  onBeforeScreenshot ($el) {
+    const appHeader = $el.find('.sis-app-header')
+    const printPadding = $el.find('.print-padding')
+
+    if (appHeader && printPadding) {
+      appHeader.hide()
+      printPadding.hide()
+    }
+  },
+
+  onAfterScreenshot ($el, props) {
+    const appHeader = $el.find('.sis-app-header')
+    const printPadding = $el.find('.print-padding')
+
+    if (appHeader && printPadding) {
+      appHeader.show()
+      printPadding.show()
+    }
+  },
+})
+
 context('Navigation', () => {
   beforeEach(() => {
     cy.viewport(1024, 1600)
