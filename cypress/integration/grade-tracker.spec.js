@@ -24,7 +24,7 @@ Cypress.Screenshot.defaults({
 
 context('Navigation', () => {
   beforeEach(() => {
-    cy.viewport(1024, 1600)
+    cy.viewport(950, 1600)
     cy.visit('/login')
     cy.findByText('Loading...').should('not.be.visible')
     cy.findAllByRole('tab').should('exist')
