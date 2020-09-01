@@ -12,10 +12,33 @@
 // This function is called when a project is opened or re-opened (e.g. due to
 // the project's config changing)
 
+const { readFileSync } = require('fs')
+const { S3 } = require('aws-sdk')
+
 /**
  * @type {Cypress.PluginConfig}
  */
 module.exports = (on, config) => {
   // `on` is used to hook into various events Cypress emits
   // `config` is the resolved Cypress config
+  on('task', {
+    readFile(path) {
+    },
+    uploadToS3({accessKeyId, secretAccessKey, filepath}) {
+      const filename = filepath.split('/').slice(-1)[0]
+      const data = readFileSync(filepath)
+      const s3 = new S3(
+        {
+          accessKeyId,
+          secretAccessKey,
+          region: 'us-east-2'
+        }
+      )
+      return s3.putObject({
+        Bucket: 'wentzville-school-grades-382220085659',
+        Key: filename,
+        Body: data
+      }).promise()
+    }
+  })
 }

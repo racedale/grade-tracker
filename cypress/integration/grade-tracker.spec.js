@@ -36,22 +36,35 @@ context('Navigation', () => {
     cy.findByLabelText('username').click().type(Cypress.env('EMAIL'))
     cy.findByLabelText('password').click().type(Cypress.env('PASSWORD'))
     cy.findAllByRole('button').should('have.length', 2).then(results => {
-      console.log(results)
       const [loginButton] = Object.values(results).filter(button => button.innerText === 'Login')
       loginButton.click()
     })
     cy.findByRole('progressbar').should('be.visible')
     cy.findByRole('progressbar').should('not.be.visible')
+    cy.get('body').then(($body) => {
+      // synchronously query from body
+      // to find which element was created
+      const announcements = $body.find('[role="dialog"]')
+      if (announcements.length > 0) {
+        announcements.then(results => {
+          $body.find('$cancelButton').click()
+        })
+      }
+    })
     cy.findByText('Current Grades')
   })
 
-  // TODO: build display
   // TODO: upload to S3
   // TODO: automate nightly
 
   it('should take screenshot of Mia grades', () => {
     cy.findByRole('progressbar').should('not.be.visible')
     cy.screenshot('mia', { capture: 'fullPage' })
+    cy.task('uploadToS3', {
+      accessKeyId: Cypress.env('AWS_ACCESS_KEY_ID'),
+      secretAccessKey: Cypress.env('AWS_SECRET_ACCESS_KEY'),
+      filepath: 'cypress/screenshots/grade-tracker.spec.js/mia.png',
+    }).then(console.log)
   })
 
   it('should take screenshot of Aaron grades', () => {
@@ -65,6 +78,11 @@ context('Navigation', () => {
     cy.findByRole('progressbar').should('not.be.visible')
     cy.wait(500)
     cy.screenshot('aaron', { capture: 'fullPage' })
+    cy.task('uploadToS3', {
+      accessKeyId: Cypress.env('AWS_ACCESS_KEY_ID'),
+      secretAccessKey: Cypress.env('AWS_SECRET_ACCESS_KEY'),
+      filepath: 'cypress/screenshots/grade-tracker.spec.js/aaron.png',
+    }).then(console.log)
   })
 
   it('should take screenshot of Lucas grades', () => {
@@ -77,5 +95,10 @@ context('Navigation', () => {
     cy.findByRole('progressbar').should('be.visible')
     cy.findByRole('progressbar').should('not.be.visible')
     cy.screenshot('lucas', { capture: 'fullPage' })
+    cy.task('uploadToS3', {
+      accessKeyId: Cypress.env('AWS_ACCESS_KEY_ID'),
+      secretAccessKey: Cypress.env('AWS_SECRET_ACCESS_KEY'),
+      filepath: 'cypress/screenshots/grade-tracker.spec.js/lucas.png',
+    }).then(console.log)
   })
 })
