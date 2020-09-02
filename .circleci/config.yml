@@ -4,10 +4,12 @@ orbs:
 
 jobs:
   deploy:
+    docker:
+      - image: cimg/base
     steps:
-        - run:
-            name: Trigger Netlify Build
-            command: curl -X POST -d {} https://api.netlify.com/build_hooks/5f502d7b307755271bf17e2c
+      - run:
+          name: Trigger Netlify Build
+          command: curl -X POST -d {} https://api.netlify.com/build_hooks/5f502d7b307755271bf17e2c
 
 workflows:
   screenshot:
