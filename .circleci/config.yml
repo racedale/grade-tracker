@@ -1,0 +1,16 @@
+jobs:
+  screenshot:
+    executor: node/default
+    steps:
+      - checkout
+      - node/install-packages
+      - run:
+          command: npx cypress run
+
+version: 2.1
+orbs:
+  node: circleci/node@4.0.0
+workflows:
+  node-tests:
+    jobs:
+      - screenshot
