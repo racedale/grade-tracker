@@ -13,6 +13,9 @@ jobs:
 
 workflows:
   screenshot:
+    triggers:
+      - schedule:
+          cron: "0 1 * * *"
     jobs:
       - cypress/install
       - cypress/run:
