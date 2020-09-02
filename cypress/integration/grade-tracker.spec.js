@@ -52,6 +52,11 @@ context('Navigation', () => {
     cy.findByText('Current Grades')
   })
 
+  afterEach(() => {
+    cy.clearCookies()
+    cy.clearLocalStorage()
+  })
+
   // TODO: upload to S3
   // TODO: automate nightly
 
