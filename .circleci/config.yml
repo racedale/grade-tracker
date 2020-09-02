@@ -6,5 +6,5 @@ workflows:
     jobs:
       - cypress/install
       - cypress/run:
-        requires:
-          - cypress/install
+          requires:
+            - cypress/install
