@@ -1,8 +1,8 @@
 version: 2.1
 orbs:
-  node: cypress-io/cypress@1.26.0
+  cypress: cypress-io/cypress@1
 workflows:
-  node-tests:
+  screenshot:
     jobs:
       - cypress/install
       - cypress/run
