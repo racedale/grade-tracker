@@ -46,9 +46,7 @@ context('Navigation', () => {
       // to find which element was created
       const announcements = $body.find('[role="dialog"]')
       if (announcements.length > 0) {
-        announcements.then(results => {
-          $body.find('$cancelButton').click()
-        })
+        $body.find('$cancelButton').click()
       }
     })
     cy.findByText('Current Grades')
