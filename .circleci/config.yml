@@ -5,7 +5,7 @@ orbs:
 jobs:
   deploy:
     docker:
-      - image: cimg/base
+      - image: cimg/base:2020.01
     steps:
       - run:
           name: Trigger Netlify Build
