@@ -1,6 +1,14 @@
 version: 2.1
 orbs:
   cypress: cypress-io/cypress@1
+
+jobs:
+  deploy:
+    steps:
+        - run:
+            name: Trigger Netlify Build
+            command: curl -X POST -d {} https://api.netlify.com/build_hooks/5f502d7b307755271bf17e2c
+
 workflows:
   screenshot:
     jobs:
@@ -9,3 +17,6 @@ workflows:
           store_artifacts: true
           requires:
             - cypress/install
+      - deploy:
+          requires:
+            - cypress/run
