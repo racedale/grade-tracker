@@ -65,7 +65,7 @@ context('Navigation', () => {
   it('should take screenshot of Mia grades', () => {
     cy.findByRole('progressbar').should('not.be.visible')
     cy.screenshot('mia', { capture: 'fullPage' })
-    if(Cypress.env('IS_CI')) {
+    if(Cypress.env('CI')) {
       cy.task('uploadToS3', {
         accessKeyId: Cypress.env('AWS_ACCESS_KEY_ID'),
         secretAccessKey: Cypress.env('AWS_SECRET_ACCESS_KEY'),
@@ -85,7 +85,7 @@ context('Navigation', () => {
     cy.findByRole('progressbar').should('not.be.visible')
     cy.wait(500)
     cy.screenshot('aaron', { capture: 'fullPage' })
-    if(Cypress.env('IS_CI')) {
+    if(Cypress.env('CI')) {
       cy.task('uploadToS3', {
         accessKeyId: Cypress.env('AWS_ACCESS_KEY_ID'),
         secretAccessKey: Cypress.env('AWS_SECRET_ACCESS_KEY'),
@@ -104,7 +104,7 @@ context('Navigation', () => {
     cy.findByRole('progressbar').should('be.visible')
     cy.findByRole('progressbar').should('not.be.visible')
     cy.screenshot('lucas', { capture: 'fullPage' })
-    if(Cypress.env('IS_CI')) {
+    if(Cypress.env('CI')) {
       cy.task('uploadToS3', {
         accessKeyId: Cypress.env('AWS_ACCESS_KEY_ID'),
         secretAccessKey: Cypress.env('AWS_SECRET_ACCESS_KEY'),
