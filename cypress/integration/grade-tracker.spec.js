@@ -47,6 +47,7 @@ context('Navigation', () => {
       const announcements = $body.find('[role="dialog"]')
       if (announcements.length > 0) {
         $body.find('#cancelButton').click()
+        cy.wait(500)
       }
     })
     cy.findByText('Current Grades')
