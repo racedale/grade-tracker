@@ -42,12 +42,10 @@ context('Navigation', () => {
     cy.findByRole('progressbar').should('be.visible')
     cy.findByRole('progressbar').should('not.be.visible')
     cy.get('body').invoke('attr', 'height', 'initial').then(($body) => {
-      // synchronously query from body
-      // to find which element was created
       const announcements = $body.find('[role="dialog"]')
       if (announcements.length > 0) {
         // TODO: fix closing the dialog
-        $body.find('#cancelButton').click()
+        $body.find('#cancelButton')[0].click()
         cy.wait(500)
       }
     })
@@ -58,9 +56,6 @@ context('Navigation', () => {
     cy.clearCookies()
     cy.clearLocalStorage()
   })
-
-  // TODO: upload to S3
-  // TODO: automate nightly
 
   it('should take screenshot of Mia grades', () => {
     cy.findByRole('progressbar').should('not.be.visible')
