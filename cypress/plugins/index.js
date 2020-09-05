@@ -31,13 +31,14 @@ module.exports = (on, config) => {
         {
           accessKeyId,
           secretAccessKey,
-          region: 'us-east-2'
+          region: 'us-east-2',
         }
       )
       return s3.putObject({
         Bucket: 'wentzville-school-grades-382220085659',
+        ACL: 'public-read',
         Key: filename,
-        Body: data
+        Body: data,
       }).promise()
     }
   })
