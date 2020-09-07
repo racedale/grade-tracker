@@ -45,6 +45,7 @@ context('Navigation', () => {
       const announcements = $body.find('[role="dialog"]')
       if (announcements.length > 0) {
         // TODO: fix closing the dialog
+        cy.task('log', $body.find('#cancelButton'))
         $body.find('#cancelButton').click()
         cy.wait(500)
       }

@@ -22,7 +22,8 @@ module.exports = (on, config) => {
   // `on` is used to hook into various events Cypress emits
   // `config` is the resolved Cypress config
   on('task', {
-    readFile(path) {
+    log(message) {
+      console.log(message)
     },
     uploadToS3({accessKeyId, secretAccessKey, filepath}) {
       const filename = filepath.split('/').slice(-1)[0]
