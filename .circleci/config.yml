@@ -13,13 +13,13 @@ jobs:
 
 workflows:
   screenshot:
-    triggers:
-      - schedule:
-          cron: "0 4 * * *"
-          filters:
-            branches:
-              only:
-                - main
+    # triggers:
+      # - schedule:
+      #     cron: "0 4 * * *"
+      #     filters:
+      #       branches:
+      #         only:
+      #           - main
     jobs:
       - cypress/install
       - cypress/run:
